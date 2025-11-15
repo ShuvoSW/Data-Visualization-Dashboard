@@ -14,6 +14,7 @@ df_static = pd.DataFrame(
 
 app = Dash(__name__)
 
+# Dashboard
 app.layout = html.Div(
     [
         html.H1("Smoothie Dashboard", style={'textAlign': 'center'}),
