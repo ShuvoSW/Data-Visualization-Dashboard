@@ -36,7 +36,13 @@ app.layout = html.Div(
             )
         ),
         
-      
+        html.H2('Static Smoothie Sales by Day', style={'marginTop': '30px'}),
+                dcc.Dropdown(
+            id= 'static-smoothie-dropdown',
+            options=[{'label': smoothie , 'value': smoothie} for smoothie in df_static['Smoothie'].unique()],
+            value="Mango"
+        ),
+        dcc.Graph(id='static-sales-graph'),
     ]
 )
 
