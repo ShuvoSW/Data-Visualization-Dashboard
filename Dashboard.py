@@ -27,7 +27,16 @@ app.layout = html.Div(
         dcc.Graph(id='csv-sales-over-time'),
         html.Br(),
         
-       
+        dcc.Graph(
+            id='csv-total-sales-bar',
+            figure = px.bar(
+                df_csv.groupby("Smoothie").sum(numeric_only=True).reset_index(),
+                x="Smoothie", y="Sales", color="Smoothie",
+                title="Total Sales by Smoothie (csv)"
+            )
+        ),
+        
+      
     ]
 )
 
