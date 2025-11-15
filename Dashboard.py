@@ -15,7 +15,20 @@ df_static = pd.DataFrame(
 app = Dash(__name__)
 
 app.layout = html.Div(
-
+    [
+        html.H1("Smoothie Dashboard", style={'textAlign': 'center'}),
+        
+        html.H2("CSV-based Sales Over Time", style={'marginTop': '30px'}),
+        dcc.Dropdown(
+            id= 'csv-smoothie-filter',
+            options=[{'label': smoothie , 'value': smoothie} for smoothie in df_csv['Smoothie'].unique()],
+            value="Mango"
+        ),
+        dcc.Graph(id='csv-sales-over-time'),
+        html.Br(),
+        
+       
+    ]
 )
 
 @app.callback(
@@ -23,7 +36,7 @@ app.layout = html.Div(
     Input("csv-smoothie-filter", 'value')
 )
 
-  def update_csv_time_series(selected_smoothie):
+def update_csv_time_series(selected_smoothie):
     filtered_df = df_csv[df_csv['Smoothie'] == selected_smoothie]
     fig = px.line(filtered_df, x="Date", y="Sales",
                   title=f"{selected_smoothie} sales over time(csv)")
