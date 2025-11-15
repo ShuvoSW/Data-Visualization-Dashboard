@@ -23,6 +23,12 @@ app.layout = html.Div(
     Input("csv-smoothie-filter", 'value')
 )
 
+  def update_csv_time_series(selected_smoothie):
+    filtered_df = df_csv[df_csv['Smoothie'] == selected_smoothie]
+    fig = px.line(filtered_df, x="Date", y="Sales",
+                  title=f"{selected_smoothie} sales over time(csv)")
+    
+    return fi
 
 
 if __name__ =='__main__':
